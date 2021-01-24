@@ -2,6 +2,8 @@ package ru.stqa.pft.sandbox.appmanager;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.BrowserType;
 import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
@@ -10,9 +12,18 @@ public class ApplicationManager {
     private NavigatioHelper navigatioHelper;
     private GroupHelper groupHelper;
     private SessionHelper sessionHelper;
+    private String browser;
+
+    public ApplicationManager(String browser) {
+        this.browser = browser;
+    }
 
     public void init() {
-        driver = new ChromeDriver();
+        if (browser == BrowserType.CHROME) {
+            driver = new ChromeDriver();
+        } else if (browser == BrowserType.FIREFOX) {
+            driver = new FirefoxDriver();
+        }
         driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         driver.get("http://localhost/addressbook/");
         groupHelper = new GroupHelper(driver);
