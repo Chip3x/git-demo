@@ -1,4 +1,5 @@
 chromedriver.exe
+geckodriver.exe
 .idea
 QAdevTest.iml
 target
