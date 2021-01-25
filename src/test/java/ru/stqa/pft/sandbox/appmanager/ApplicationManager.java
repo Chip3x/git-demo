@@ -11,6 +11,7 @@ public class ApplicationManager {
 
     private NavigatioHelper navigatioHelper;
     private GroupHelper groupHelper;
+    private ContactHelper contactHelper;
     private SessionHelper sessionHelper;
     private String browser;
 
@@ -24,9 +25,10 @@ public class ApplicationManager {
         } else if (browser.equals(BrowserType.FIREFOX)) {
             driver = new FirefoxDriver();
         }
-        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+        //driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         driver.get("http://localhost/addressbook/");
         groupHelper = new GroupHelper(driver);
+        contactHelper = new ContactHelper(driver);
         navigatioHelper = new NavigatioHelper(driver);
         sessionHelper = new SessionHelper(driver);
         sessionHelper.login("admin", "secret");
@@ -40,7 +42,11 @@ public class ApplicationManager {
         return groupHelper;
     }
 
-    public NavigatioHelper getNavigatioHelper() {
+    public ContactHelper getContactHelper() {
+        return contactHelper;
+    }
+
+    public NavigatioHelper getNavigationHelper() {
         return navigatioHelper;
     }
 }
