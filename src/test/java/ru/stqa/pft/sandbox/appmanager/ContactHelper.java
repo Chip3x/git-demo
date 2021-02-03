@@ -12,7 +12,7 @@ public class ContactHelper extends HelperBase {
         super(driver);
     }
 
-    public void initContact() {
+    public void initContactCreation() {
         click(By.linkText("add new"));
     }
 
@@ -20,27 +20,27 @@ public class ContactHelper extends HelperBase {
         type(By.name("firstname"), contactData.getFirstname());
         type(By.name("lastname"), contactData.getLastname());
 
-        if (creation){
+        if (creation) {
             new Select(driver.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-        }else {
+        } else {
             Assert.assertFalse(isElementPresent(By.name("new_group")));
         }
-
-
-        public void submitContactCreation() {
-            click(By.name("submit"));
-        }
-
-        public void returnToHomePage() {
-            click(By.linkText("home page"));
-        }
-
-        public void submitContactModification() {
-            click(By.cssSelector("img[alt='Edit']"));
-        }
-
-        public void submitContactModification() {
-            click(By.name("update"));
-        }
     }
+
+    public void submitContactCreation() {
+        click(By.name("submit"));
+    }
+
+    public void returnToHomePage() {
+        click(By.linkText("home page"));
+    }
+
+    public void initContactModification() {
+        click(By.cssSelector("img[alt='Edit']"));
+    }
+
+    public void submitContactModification() {
+        click(By.name("update"));
+    }
+}
 
